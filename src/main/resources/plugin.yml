@@ -1,0 +1,6 @@
+name: CraftTenkore
+main: academy.hekiyou.tenkore.crafttenkore.CraftTenkore
+version: 1.0.0
+description: Core plugin for Tenkore plugins built for CraftBukkit-derivatives
+api-version: "1.14"
+author: Tenko
