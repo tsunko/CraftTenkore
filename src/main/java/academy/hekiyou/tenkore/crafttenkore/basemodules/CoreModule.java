@@ -1,12 +1,12 @@
 package academy.hekiyou.tenkore.crafttenkore.basemodules;
 
-import academy.hekiyou.tenkore.crafttenkore.CraftTenkore;
-import academy.hekiyou.tenkore.crafttenkore.doorimpl.BukkitRegister;
-import academy.hekiyou.tenkore.crafttenkore.loader.WhiteboxException;
 import academy.hekiyou.door.annotations.Module;
 import academy.hekiyou.door.annotations.RegisterCommand;
 import academy.hekiyou.door.model.Command;
 import academy.hekiyou.door.model.Invoker;
+import academy.hekiyou.tenkore.crafttenkore.CraftTenkore;
+import academy.hekiyou.tenkore.crafttenkore.doorimpl.BukkitRegister;
+import academy.hekiyou.tenkore.crafttenkore.loader.WhiteboxException;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.InvalidDescriptionException;

@@ -1,9 +1,9 @@
 package academy.hekiyou.tenkore.crafttenkore.doorimpl;
 
-import academy.hekiyou.tenkore.crafttenkore.CraftTenkore;
 import academy.hekiyou.door.annotations.RegisterCommand;
 import academy.hekiyou.door.model.Command;
 import academy.hekiyou.door.model.Register;
+import academy.hekiyou.tenkore.crafttenkore.CraftTenkore;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandMap;
 import org.bukkit.command.SimpleCommandMap;

@@ -1,22 +1,19 @@
 package academy.hekiyou.tenkore.crafttenkore.doorimpl;
 
-import academy.hekiyou.tenkore.crafttenkore.doorimpl.tabcompletion.Completer;
-import academy.hekiyou.tenkore.crafttenkore.doorimpl.tabcompletion.Completers;
 import academy.hekiyou.door.FrontDoor;
 import academy.hekiyou.door.annotations.RegisterCommand;
 import academy.hekiyou.door.exception.BadCastException;
 import academy.hekiyou.door.model.Command;
-import org.bukkit.Bukkit;
+import academy.hekiyou.tenkore.crafttenkore.doorimpl.tabcompletion.Completer;
+import academy.hekiyou.tenkore.crafttenkore.doorimpl.tabcompletion.Completers;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.lang.reflect.Parameter;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Level;
 
 /**
  * Represents a shim for Bukkit's Command class, as we don't utilize Bukkit's command system fully
@@ -39,7 +36,7 @@ public class BukkitCommandShim extends org.bukkit.command.Command {
     BukkitCommandShim(@NotNull academy.hekiyou.door.model.Command internal,
                       @NotNull String name, @NotNull String description,
                       @NotNull String usageMessage, @NotNull List<String> aliases){
-        super(name, description, usageMessage, aliases);
+        super(name.toLowerCase(), description, usageMessage, aliases);
         super.setPermission(internal.getMetadata().permission());
         this.internalCommand = internal;
     }
@@ -70,26 +67,20 @@ public class BukkitCommandShim extends org.bukkit.command.Command {
     
     @Override
     public @NotNull List<String> tabComplete(@NotNull CommandSender sender, @NotNull String alias, @NotNull String[] args){
-        Bukkit.getLogger().log(Level.WARNING, "reee");
         if(!sender.hasPermission(internalCommand.getMetadata().permission())){
-            Bukkit.getLogger().log(Level.WARNING, "reee1");
             return Collections.emptyList();
         }
     
         Parameter[] parameters = internalCommand.getParameters();
         if(args.length > parameters.length){
-            Bukkit.getLogger().log(Level.WARNING, "reee2");
             return Collections.emptyList();
         }
         
         Parameter currArgType = parameters[args.length - 1];
-        Bukkit.getLogger().log(Level.WARNING, currArgType.getType().getCanonicalName());
         Completer completer = Completers.completerFor(currArgType.getType());
         if(completer != null){
-            Bukkit.getLogger().log(Level.WARNING, "reee3");
             return completer.provide(args[args.length - 1]);
         } else {
-            Bukkit.getLogger().log(Level.WARNING, "reee4");
             return Collections.emptyList();
         }
     }

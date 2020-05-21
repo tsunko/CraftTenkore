@@ -1,16 +1,15 @@
 package academy.hekiyou.tenkore.crafttenkore;
 
-import academy.hekiyou.tenkore.crafttenkore.basemodules.CoreModule;
-import academy.hekiyou.tenkore.crafttenkore.doorimpl.BukkitInterpreters;
-import academy.hekiyou.tenkore.crafttenkore.doorimpl.BukkitRegister;
-import academy.hekiyou.tenkore.crafttenkore.loader.WhiteboxLoader;
 import academy.hekiyou.door.FrontDoor;
 import academy.hekiyou.door.Settings;
 import academy.hekiyou.door.model.Register;
 import academy.hekiyou.tenkore.Tenkore;
+import academy.hekiyou.tenkore.crafttenkore.basemodules.CoreModule;
+import academy.hekiyou.tenkore.crafttenkore.doorimpl.BukkitInterpreters;
+import academy.hekiyou.tenkore.crafttenkore.doorimpl.BukkitRegister;
+import academy.hekiyou.tenkore.crafttenkore.loader.WhiteboxLoader;
 import academy.hekiyou.tenkore.plugin.Loader;
 import academy.hekiyou.tenkore.plugin.LoaderManager;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;

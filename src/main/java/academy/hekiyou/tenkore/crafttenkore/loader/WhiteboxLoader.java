@@ -1,7 +1,7 @@
 package academy.hekiyou.tenkore.crafttenkore.loader;
 
-import academy.hekiyou.tenkore.crafttenkore.CraftTenkore;
 import academy.hekiyou.door.FrontDoor;
+import academy.hekiyou.tenkore.crafttenkore.CraftTenkore;
 import academy.hekiyou.tenkore.plugin.Loader;
 import academy.hekiyou.tenkore.plugin.TenkorePlugin;
 import org.bukkit.event.HandlerList;
