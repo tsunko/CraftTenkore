@@ -20,7 +20,7 @@ import java.util.List;
  */
 public class BukkitCommandShim extends org.bukkit.command.Command {
     
-    private Command internalCommand;
+    private final Command internalCommand;
     
     /**
      * Constructs a dummy {@link Command} shim that serves no purpose other than to call Faucet.process().
@@ -58,7 +58,7 @@ public class BukkitCommandShim extends org.bukkit.command.Command {
             if(cause instanceof BadCastException && ((BadCastException) cause).getExpected() == Player.class){
                 commandSender.sendMessage(ChatColor.RED + "This command can only be used by players.");
             } else {
-                // just rethrow since it wasn't a bad cast
+                // just rethrow since it wasn't a bad cast or bad interpretation
                 throw exc;
             }
             return false;

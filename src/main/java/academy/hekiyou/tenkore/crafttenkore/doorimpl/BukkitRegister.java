@@ -21,10 +21,10 @@ public class BukkitRegister implements Register {
     
     // <fallback prefix + command (or just command), bukkit command object>
     // caveat with bukkit: command name must be lower case or else it can't find anything...
-    private Map<String, org.bukkit.command.Command> internalBukkitMap;
+    private final Map<String, org.bukkit.command.Command> internalBukkitMap;
     // <command name, gunvarrel command object>
-    private Map<String, Command> registeredCommands;
-    private CommandMap commandMap;
+    private final Map<String, Command> registeredCommands;
+    private final CommandMap commandMap;
     
     public BukkitRegister(){
         commandMap = getInternalCommandMap(Bukkit.getPluginManager());
@@ -78,6 +78,9 @@ public class BukkitRegister implements Register {
             registeredCommands.put(alias, command);
             shim.register(commandMap);
         }
+    
+        // TODO: investigate how to update command data
+        //  CommandDispatcher.a(EntityPlayer)?
     }
 
     /**

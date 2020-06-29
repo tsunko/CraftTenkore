@@ -11,7 +11,7 @@ import java.util.UUID;
 public class BukkitInvoker implements Invoker {
 
     private static final UUID NON_PLAYER_UUID = new UUID(0, 0);
-    private CommandSender ref;
+    private final CommandSender ref;
     
     BukkitInvoker(CommandSender player){
         ref = player;

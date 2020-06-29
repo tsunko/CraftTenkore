@@ -7,6 +7,7 @@ import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
@@ -46,7 +47,7 @@ public class JarEntryUtils {
     public static BufferedReader createBufferedReader(@NotNull JarFile file, @NotNull String entryKey) throws IOException {
         JarEntry entry = file.getJarEntry(entryKey);
         if(entry == null) return null;
-        return new BufferedReader(new InputStreamReader(file.getInputStream(entry)));
+        return new BufferedReader(new InputStreamReader(file.getInputStream(entry), StandardCharsets.UTF_8));
     }
     
 }

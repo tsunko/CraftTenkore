@@ -12,7 +12,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.lang.invoke.MethodHandles;
 import java.lang.reflect.InvocationTargetException;
 import java.nio.file.Path;
 import java.security.AccessController;
@@ -27,23 +26,21 @@ import java.util.logging.Logger;
  */
 public class WhiteboxLoader implements Loader {
     
-    private Logger logger = Logger.getLogger(MethodHandles.lookup().lookupClass().getSimpleName());
-    private Map<String, TenkorePlugin> loadedPlugins = new HashMap<>();
+    private final Logger LOGGER = Logger.getLogger(WhiteboxLoader.class.getSimpleName());
+    private final Map<String, TenkorePlugin> LOADED_PLUGINS = new HashMap<>();
 
     /**
      * @inheritDoc
      */
     @Override @NotNull
     public TenkorePlugin loadPlugin(@NotNull Path path){
-        logger.log(Level.INFO, "Loading " + path.getFileName().toString() + "...");
+        LOGGER.log(Level.INFO, "Loading " + path.getFileName().toString() + "...");
     
         Properties pkgInfo = new Properties();
         TenkorePlugin plugin;
         String name;
 
         BufferedReader reader = null;
-
-        // bit of a visual issue; note that reader is within try-with-resource
         try {
             JarFile jar = new JarFile(path.toFile());
             reader = JarEntryUtils.createBufferedReader(jar, "pkg-info");
@@ -86,8 +83,8 @@ public class WhiteboxLoader implements Loader {
     
         // finally, we can enable the plugin and add it as a loaded plugin
         plugin.enable();
-        loadedPlugins.put(name, plugin);
-        logger.log(Level.INFO, "Loaded " + plugin.getName() + "!");
+        LOADED_PLUGINS.put(name, plugin);
+        LOGGER.log(Level.INFO, "Loaded " + plugin.getName() + "!");
         return plugin;
     }
 
@@ -96,10 +93,10 @@ public class WhiteboxLoader implements Loader {
      */
     @Override @Nullable
     public TenkorePlugin unloadPlugin(@NotNull String pluginName){
-        TenkorePlugin plugin = loadedPlugins.get(pluginName);
+        TenkorePlugin plugin = LOADED_PLUGINS.get(pluginName);
         if(plugin == null) return null;
     
-        logger.log(Level.INFO, "Unloading " + pluginName + "...");
+        LOGGER.log(Level.INFO, "Unloading " + pluginName + "...");
         
         // let the plugin clean up anything it needs to
         plugin.disable();
@@ -117,7 +114,7 @@ public class WhiteboxLoader implements Loader {
             }
         }
         
-        logger.log(Level.INFO, "Unloaded " + pluginName + "!");
+        LOGGER.log(Level.INFO, "Unloaded " + pluginName + "!");
         return plugin;
     }
 
@@ -126,7 +123,7 @@ public class WhiteboxLoader implements Loader {
      */
     @Override @NotNull
     public List<String> getLoadedPlugins(){
-        return new ArrayList<>(loadedPlugins.keySet());
+        return new ArrayList<>(LOADED_PLUGINS.keySet());
     }
 
     /**

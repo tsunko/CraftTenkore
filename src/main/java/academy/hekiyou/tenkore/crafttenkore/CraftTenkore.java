@@ -95,6 +95,7 @@ public class CraftTenkore extends JavaPlugin implements Tenkore {
 				.usageErrorFormat(ChatColor.RED + "Usage: %s")
 				.permissionError(ChatColor.RED + "You don't have permission to do that!")
 				.invalidSubcommandError(ChatColor.RED + "Sub-command not found; these are available: %s")
+				.badInterpretationPrefix(ChatColor.RED.toString())
 				.build();
 	}
 	

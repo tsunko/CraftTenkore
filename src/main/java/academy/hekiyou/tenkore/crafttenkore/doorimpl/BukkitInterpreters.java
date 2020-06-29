@@ -165,7 +165,7 @@ public class BukkitInterpreters {
      */
     @NotNull
     public static GameMode toGameMode(@NotNull String gamemode){
-        GameMode mode = null;
+        GameMode mode;
         switch(gamemode.toLowerCase(Locale.ENGLISH)){
             case "survival":
             case "0":
@@ -183,14 +183,14 @@ public class BukkitInterpreters {
             case "3":
                 mode = GameMode.SPECTATOR;
                 break;
-        }
-        // last resort: try to use valueOf; we might not know of it yet
-        if(mode == null){
-            try {
-                mode = GameMode.valueOf(gamemode);
-            } catch (IllegalArgumentException exc){
-                throw new BadInterpretationException(String.format(GAMEMODE_NOT_FOUND_MESSAGE, gamemode));
-            }
+            default:
+                // last resort: try to use valueOf; we might not know of it yet
+                try {
+                    mode = GameMode.valueOf(gamemode);
+                    break;
+                } catch (IllegalArgumentException exc){
+                    throw new BadInterpretationException(String.format(GAMEMODE_NOT_FOUND_MESSAGE, gamemode));
+                }
         }
         return mode;
     }
